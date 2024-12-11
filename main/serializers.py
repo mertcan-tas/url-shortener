@@ -7,7 +7,7 @@ class ShortenedLinkSerializer(serializers.ModelSerializer):
         model = ShortenedLink
         fields = ['id','url']
         read_only_fields = ['id', 'created_at', 'updated_at', 'click_count']
-
+    
     def validate_url(self, value):
         validator = URLValidator()
         try:

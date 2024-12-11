@@ -18,6 +18,7 @@ db.sqlite3-journal
 
 
 *.DS_Store
+db.sqlite3
 
 # C extensions
 *.so

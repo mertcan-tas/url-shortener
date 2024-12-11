@@ -7,9 +7,9 @@ class Command(BaseCommand):
     
     def handle(self, *args, **kwargs):
         UserModel = User
-        name = "Mertcan Taş"
-        email = "mertcan.tas@outlook.com"
-        password = "naga_9192"
+        name = "Administrator"
+        email = "admin123@outlook.com"
+        password = "admin123"
         
         if not UserModel.objects.filter(email=email).exists():
             user = UserModel.objects.create_superuser(name=name, email=email, password=password)

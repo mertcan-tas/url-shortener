@@ -7,7 +7,6 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         commands = [            
             "base-admin",
-            "base-user",
         ]
         
         self.stdout.write()
