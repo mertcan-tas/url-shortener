@@ -45,8 +45,8 @@ The app provides RESTful API endpoints for managing shortened links:
 |   POST       | /api/shortened-links/create/           | Create a new shortened link               |
 |   GET        | /get/<uuid>/                           | Redirect to the original URL              |
 |   GET        | /api/shortened-links/user/             | List all shortened links of the user      |
-|   DELETE     | /api/shortened-links/<uuid>/delete/    | Delete a specific shortened link          |
-|   PUT/PATCH  | /api/shortened-links/<uuid>/update/    | Update a specific shortened link          |
+|   DELETE     | /api/shortened-links/uuid/delete/    | Delete a specific shortened link          |
+|   PUT/PATCH  | /api/shortened-links/uuid/update/    | Update a specific shortened link          |
 |   POST       | /api/account/register                  | Login                                     |
 |   POST       | /api/account/login                     | Register                                  |
 
