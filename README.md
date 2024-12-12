@@ -23,17 +23,23 @@ python -m venv env
 source env/bin/activate  # On Windows, use `env\Scripts\activate`
 ```
 
-#### 	3.	Apply database migrations:
+#### 	3.	Install project requirements:
 ```
 pip install -r requirements.txt
 ```
 
-#### 	4.	Run the development server:
+#### 	4.	Apply database migrations:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+#### 	5.	Run the development server:
 ```
 python manage.py runserver
 ```
 
-#### 	5.	Access the app:
+#### 	6.	Access the app:
 Open your browser and go to http://127.0.0.1:8000.
 
 ## API Endpoints
