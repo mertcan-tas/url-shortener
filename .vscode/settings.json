@@ -1,0 +1,11 @@
+{
+    "files.exclude": {
+        "media": false,
+        "testing": false,
+        "db.sqlite3": false,
+        "**/__pycache__": true,
+        "**/migrations": true,
+        "**/apps.py": false,
+        "*/__init__.py": false
+    }
+}

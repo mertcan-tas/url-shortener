@@ -1,0 +1,89 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+         {
+              "label": "1. Flush",
+              "type": "shell",
+              "command": "python manage.py safe",
+              "problemMatcher": [],
+              "group": {
+                   "kind": "build",
+                   "isDefault": true
+              }
+         },
+         {
+              "label": "2. Django",
+              "type": "shell",
+              "command": "python manage.py runserver",
+              "problemMatcher": [],
+              "group": {
+                   "kind": "build",
+                   "isDefault": true
+              },
+              "presentation": {
+                   "reveal": "always",
+                   "panel": "new"
+              }
+         },
+         {
+              "label": "3. Celery",
+              "type": "shell",
+              "command": "celery -A config worker --loglevel=info",
+              "problemMatcher": [],
+              "group": {
+                   "kind": "build",
+                   "isDefault": true
+              }
+         },
+         {
+              "label": "4. Celery Flower",
+              "type": "shell",
+              "command": "celery -A config flower --port=5555",
+              "problemMatcher": [],
+              "group": {
+                   "kind": "build",
+                   "isDefault": true
+              },
+              "presentation": {
+                   "close": true 
+              }
+         },
+         {
+              "label": "5. Open Celery Flower on Web",
+              "type": "shell",
+              "command": "open https://localhost:55555",
+              "problemMatcher": [],
+              "group": {
+                   "kind": "build",
+                   "isDefault": true
+              },
+              "presentation": {
+                   "close": true
+              }
+         },
+         {
+              "label": "6. Docker Compose Up",
+              "type": "shell",
+              "command": "docker-compose up -d",
+              "problemMatcher": [],
+              "group": {
+                   "kind": "build",
+                   "isDefault": true
+              },
+              "presentation": {
+                   "reveal": "always",
+                   "panel": "new"
+              }
+         },
+         {
+              "label": "7. Docker Compose Down",
+              "type": "shell",
+              "command": "docker compose down -v",
+              "problemMatcher": [],
+              "group": {
+                   "kind": "build",
+                   "isDefault": true
+              },
+         }
+    ]
+  }

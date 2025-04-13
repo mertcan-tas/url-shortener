@@ -1,0 +1,13 @@
+global:
+  scrape_interval:     5s
+  evaluation_interval: 5s
+
+alerting:
+  alertmanagers:
+
+scrape_configs:
+  - job_name: 'url-shortener'
+    static_configs:
+      - targets: ['127.0.0.1:8000']
+        labels:
+          group: 'server'
