@@ -42,17 +42,6 @@ python manage.py runserver
 #### 	6.	Access the app:
 Open your browser and go to http://127.0.0.1:8000.
 
-
-## Redirect Behavior
-The redirection logic is implemented in ShortenedLinkGetAPIView. You can modify it to include custom logging, analytics, or additional features.
-
-
-Future Enhancements
--	Add analytics for detailed tracking of clicks by date and location.
--	Implement bulk link creation for advanced users.
--	Add expiration dates to links with automatic cleanup.
--	Enhance the frontend for a user-friendly experience.
-
 ## Contributing
 We welcome contributions! Please fork this repository and submit a pull request with your changes.
 
