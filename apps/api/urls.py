@@ -24,16 +24,3 @@ urlpatterns = [
     # Ana URL Kısaltma Endpoint'i (redirector)
     # Bu ana urls.py'a eklenmelidir, çünkü kök URL'de olmalıdır
 ]
-
-# project/urls.py'a eklenecek kısım
-"""
-from django.contrib import admin
-from django.urls import path, include
-
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    
-]
-"""

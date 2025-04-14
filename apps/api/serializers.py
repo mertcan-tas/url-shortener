@@ -1,14 +1,18 @@
 from rest_framework import serializers
+from core.serializers import BaseModelSerializer
+
 from django.contrib.auth import get_user_model
-from .models import ShortURL
+from api.models import ShortURL
 
 User = get_user_model()
 
-class ShortURLSerializer(serializers.ModelSerializer):
+class ShortURLSerializer(BaseModelSerializer):
     short_url = serializers.SerializerMethodField()
     real_time_visits = serializers.IntegerField(read_only=True, required=False)
-    user_username = serializers.SerializerMethodField(read_only=True)
-    
+    extra_kwargs = {
+        'user': {'required': False}
+    }    
+
     class Meta:
         model = ShortURL
         fields = [
@@ -20,7 +24,6 @@ class ShortURLSerializer(serializers.ModelSerializer):
             'visits', 
             'real_time_visits', 
             'user', 
-            'user_username'
         ]
         read_only_fields = [
             'short_code', 
@@ -28,7 +31,6 @@ class ShortURLSerializer(serializers.ModelSerializer):
             'visits', 
             'real_time_visits', 
             'user', 
-            'user_username'
         ]
     
     def get_short_url(self, obj):
@@ -36,8 +38,3 @@ class ShortURLSerializer(serializers.ModelSerializer):
         if request is not None:
             return f"{request.scheme}://{request.get_host()}/{obj.short_code}"
         return obj.short_code
-    
-    def get_user_username(self, obj):
-        if obj.user:
-            return obj.user.username
-        return None

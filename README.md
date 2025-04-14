@@ -8,7 +8,7 @@ A simple and efficient URL shortening application built with Django. This app al
 -	Redirect users seamlessly from the shortened URL to the original URL.
 -	Track the number of clicks on each shortened link.
 -	User authentication and ownership for secure link management.
--	API endpoints for creating, retrieving, updating, and deleting shortened links.
+-	API endpoints for creating, retrieving, and deleting shortened links.
 
 ## Installation
 
@@ -42,23 +42,6 @@ python manage.py runserver
 #### 	6.	Access the app:
 Open your browser and go to http://127.0.0.1:8000.
 
-## API Endpoints
-The app provides RESTful API endpoints for managing shortened links:
-
-
-| Method   |      Endpoint      |  Description |
-|--------------|:--------------------------------------:|------------------------------------------:|
-|   POST       | /api/shortened-links/create/           | Create a new shortened link               |
-|   GET        | /get/<uuid>/                           | Redirect to the original URL              |
-|   GET        | /api/shortened-links/user/             | List all shortened links of the user      |
-|   DELETE     | /api/shortened-links/uuid/delete/    | Delete a specific shortened link          |
-|   PUT/PATCH  | /api/shortened-links/uuid/update/    | Update a specific shortened link          |
-|   POST       | /api/account/register                  | Login                                     |
-|   POST       | /api/account/login                     | Register                                  |
-
-
-## URL ID Generation
-The shortened URL IDs are generated using the ShortUUIDField. You can customize the length, character set, and format by editing the ShortenedLink model in models.py.
 
 ## Redirect Behavior
 The redirection logic is implemented in ShortenedLinkGetAPIView. You can modify it to include custom logging, analytics, or additional features.

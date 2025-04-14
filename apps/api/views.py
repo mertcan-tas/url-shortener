@@ -8,17 +8,15 @@ from django_redis import get_redis_connection
 from .models import ShortURL
 from .serializers import ShortURLSerializer
 from .tasks import increment_url_visit
+from rest_framework.permissions import AllowAny
 
 User = get_user_model()
 
 # URL Oluşturma View
 class CreateShortURLView(generics.CreateAPIView):
-    """
-    Yeni bir kısa URL oluşturmak için kullanılır.
-    Kullanıcı oturum açmışsa, URL'yi kullanıcıyla ilişkilendirir.
-    """
     serializer_class = ShortURLSerializer
-    
+    permission_classes = [AllowAny]
+
     def perform_create(self, serializer):
         if self.request.user.is_authenticated:
             serializer.save(user=self.request.user)

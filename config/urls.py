@@ -25,6 +25,7 @@ urlpatterns = [
     #path(r'', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('api/authentication/', include('authentication.urls')),
     path('testing/', include('testing.urls')),
     path('prometheus/',include('django_prometheus.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

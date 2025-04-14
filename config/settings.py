@@ -32,7 +32,9 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
+    'core',
     'account',
+    'authentication',
     'testing',
     'api'
 ]
@@ -50,9 +52,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_prometheus.middleware.PrometheusAfterMiddleware',
-    'utils.middleware.ResponseMiddleware',
-    'utils.middleware.OperationLogMiddleware',
 ]
+
+if not config("DEBUG", default=False, cast=bool):
+    MIDDLEWARE.append('utils.middleware.ResponseMiddleware')
+    MIDDLEWARE.append('utils.middleware.OperationLogMiddleware')
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -179,8 +184,9 @@ REST_FRAMEWORK = {
     }
 }
 
+FRONTEND_URL = config("FRONTEND_URL", default="http://localhost:3000", cast=str)
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = DEBUG
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React frontend için
     "http://127.0.0.1:3000",
@@ -188,15 +194,15 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True
 
 # Güvenlik ayarları
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = not DEBUG
+SECURE_BROWSER_XSS_FILTER = not DEBUG
+X_FRAME_OPTIONS = 'DENY' if not DEBUG else 'SAMEORIGIN' 
 
-# Oturum ve çerez ayarları
-SESSION_COOKIE_SECURE = False  # Production için True yapın
-CSRF_COOKIE_SECURE = False  # Production için True yapın
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
+
 
 
 SIMPLE_JWT = {
@@ -207,3 +213,12 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
     'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
 }
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "localhost"      
+EMAIL_PORT = 1025             
+EMAIL_USE_TLS = False         
+EMAIL_USE_SSL = False        
+EMAIL_HOST_USER = "noreply@app.com"           
+EMAIL_HOST_PASSWORD = ""      
